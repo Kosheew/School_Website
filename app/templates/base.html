@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock title %}</title>
-    <link rel="stylesheet" href="./static/css/style.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -16,12 +20,12 @@
         <div class="nav-links">
             <ul>
                 <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Головна</a></li>
-                <li><a href="#"><i class="fas fa-info-circle"></i> Про школу</a></li>
-                <li><a href="#"><i class="fas fa-book"></i> Навчання</a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i> Розклад</a></li>
-                <li><a href="#"><i class="fas fa-newspaper"></i> Новини</a></li>
-                <li><a href="#"><i class="fas fa-images"></i> Галерея</a></li>
-                <li><a href="#"><i class="fas fa-envelope"></i> Контакти</a></li>
+                <li><a href="{{ url_for('transparency') }}"><i class="fas fa-chart-bar"></i> Прозорість </a></li>
+                <li><a href="{{ url_for('useful_info') }}"><i class="fas fa-book"></i> Корисна інформація</a></li>
+                <li><a href="{{ url_for('schedule') }}"><i class="fas fa-calendar"></i> Розклад</a></li>
+                <li><a href="{{ url_for('education_process') }}"><i class="fas fa-graduation-cap"></i> Освітній процес</a></li>
+                <li><a href="{{ url_for('pedagogical_education') }}"><i class="fas fa-heart"></i> Педагогічне виховання</a></li>
+                <li><a href="{{ url_for('contacts') }}"><i class="fas fa-envelope"></i> Контакти</a></li>
                 {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('create_post') }}"><i class="fas fa-envelope"></i> New Post</a></li>
                 {% endif %}

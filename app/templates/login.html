@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 {% block title %}Увійти{% endblock %}
+
 {% block content %}
- <form class="login-form" method="POST">
+<div class="form-page">
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Вхід до системи</h2>
+            <p>Увійдіть у свій обліковий запис</p>
+        </div>
+
+        <form method="POST" class="auth-form">
             <div class="form-group">
-                <label for="username">Логін</label>
                 <div class="input-with-icon">
                     <i class="fas fa-user"></i>
                     <input type="text" id="username" name="username" placeholder="Введіть ваш логін" required>
                 </div>
+            </div>
 
-                <label for="password">Пароль</label>
+            <div class="form-group">
                 <div class="input-with-icon">
                     <i class="fas fa-lock"></i>
                     <input type="password" id="password" name="password" placeholder="Введіть ваш пароль" required>
@@ -17,10 +25,12 @@
                         <i class="fas fa-eye"></i>
                     </button>
                 </div>
-
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-sign-in-alt"></i> Увійти
-                </button>
             </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-sign-in-alt"></i> Увійти
+            </button>
         </form>
+    </div>
+</div>
 {% endblock %}

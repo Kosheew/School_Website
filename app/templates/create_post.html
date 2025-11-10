@@ -1,16 +1,71 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h2>Create a New Post</h2>
-<form method="POST" enctype="multipart/form-data">
-    <label>Title:</label>
-    <input type="text" name="title" required><br>
+<div class="content-container">
+    <div class="form-page">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Створення поста</h2>
+                <p>Оберіть розділ та додайте нову публікацію</p>
+            </div>
 
-    <label>Content:</label>
-    <textarea name="content" required></textarea><br>
+            <form method="POST" enctype="multipart/form-data" class="auth-form">
+                <!-- Вибір категорії -->
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-folder"></i>
+                        <select id="category" name="category" required>
+                            <option value="">Оберіть розділ</option>
+                            <option value="index">Головна</option>
+                            <option value="transparency">Прозорість</option>
+                            <option value="useful_info">Корисна інформація</option>
+                            <option value="schedule">Розклад</option>
+                            <option value="education_process">Освітній процес</option>
+                            <option value="pedagogical_education">Педагогічне виховання</option>
+                            <option value="contacts">Контакти</option>
+                        </select>
+                    </div>
+                </div>
 
-    <label>Attach file (PDF or Image):</label>
-    <input type="file" name="file" accept=".pdf, .png, .jpg, .jpeg"><br><br>
+                <!-- Заголовок -->
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-heading"></i>
+                        <input type="text" id="title" name="title" placeholder="Введіть заголовок" required>
+                    </div>
+                </div>
 
-    <button type="submit">Create Post</button>
-</form>
+                <!-- Зміст -->
+                <div class="form-group">
+                    <div class="input-with-icon textarea-container">
+                        <i class="fas fa-file-alt"></i>
+                        <textarea id="content" name="content" rows="5" placeholder="Введіть зміст поста" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Дата публікації -->
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-calendar"></i>
+                        <input type="date" id="scheduled_date" name="scheduled_date">
+                    </div>
+                    <small class="text-muted">Залишіть пустим для негайного розміщення</small>
+                </div>
+
+                <!-- Файл -->
+                <div class="form-group">
+                    <div class="input-with-icon file-input-container">
+                        <i class="fas fa-paperclip"></i>
+                        <input type="file" id="file" name="file" class="file-input">
+                    </div>
+                    <small class="text-muted">PNG, JPG, JPEG, PDF (макс. 16MB)</small>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-plus-circle"></i> Створити пост
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

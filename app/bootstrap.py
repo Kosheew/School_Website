@@ -8,7 +8,12 @@ login_manager = LoginManager()
 login_manager.login_view = 'login'
 
 def create_app():
-    app = Flask(__name__)
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    app = Flask(
+        __name__,
+        static_folder=os.path.join(BASE_DIR, 'static'),
+        template_folder=os.path.join(BASE_DIR, 'templates')
+    )
 
     # Основні налаштування
     app.config['SECRET_KEY'] = 'secret-key-change-me'
