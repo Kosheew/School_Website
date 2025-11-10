@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Реєстрація{% endblock %}
+{% block content %}
+<h2>Реєстрація</h2>
+<form method="POST">
+    <label for="username">Логін:</label>
+    <input type="text" name="username" required>
+
+    <label for="password">Пароль:</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">Зареєструватися</button>
+</form>
+<p>Вже маєте акаунт? <a href="{{ url_for('login') }}">Увійти</a></p>
+{% endblock %}

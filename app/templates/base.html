@@ -1,0 +1,54 @@
+{# templates/base.html #}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <h1>Шкільний портал</h1>
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Головна</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> Про школу</a></li>
+                <li><a href="#"><i class="fas fa-book"></i> Навчання</a></li>
+                <li><a href="#"><i class="fas fa-calendar-alt"></i> Розклад</a></li>
+                <li><a href="#"><i class="fas fa-newspaper"></i> Новини</a></li>
+                <li><a href="#"><i class="fas fa-images"></i> Галерея</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i> Контакти</a></li>
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('create_post') }}"><i class="fas fa-envelope"></i> New Post</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="auth-section">
+            {% if current_user.is_authenticated %}
+             <a href="{{ url_for('logout') }}" class="auth-btn"><i class="fas fa-sign-in-alt"></i> Вийти ({{ current_user.username }})</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="auth-btn"><i class="fas fa-sign-in-alt"></i> Увійти</a>
+            <a href="{{ url_for('register') }}" class="auth-btn"><i class="fas fa-user-plus"></i> Зареєструватися</a>
+            {% endif %}
+        </div>
+    </nav>
+
+        <main class="main-content">
+        <header class="header">
+           <img src="{{ url_for('static', filename='images/school_header.jpg') }}" alt="Школа" class="school-image">
+            <div class="header-overlay">
+                <div class="header-text">
+                    <h2>Ласкаво просимо до нашої школи</h2>
+                    <p>Місце, де кожна дитина розкриває свій потенціал</p>
+                </div>
+            </div>
+        </header>
+            {% block content %}
+            {% endblock %}
+    </main>
+</body>
+</html>

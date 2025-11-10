@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content-container">
+    <section class="content">
+        <div class="content-section">
+            <h3>Про нашу школу</h3>
+            <p>Наша школа - це сучасний навчальний заклад, який поєднує в собі багаторічні традиції якісної освіти та інноваційні підходи до навчання. Ми прагнемо створити середовище, в якому кожен учень може розкрити свої таланти та здобути знання, необхідні для успіху в майбутньому.</p>
+            <p>Наші вчителі - це професіонали з багаторічним досвідом, які постійно вдосконалюють свої навички та використовують сучасні методики викладання.</p>
+        </div>
+
+        <div class="content-section">
+            <h3>Останні новини</h3>
+            <div class="news-grid">
+
+                {% for post in posts %}
+                        <div class="news-card">
+                            {% if post.file_path %}
+                                {% if post.file_path.endswith('.pdf') %}
+                                    <a href="{{ url_for('static', filename='uploads/' + post.file_path.split('/')[-1]) }}" target="_blank">📄 View PDF</a>
+                                {% else %}
+                                    <img src="{{ url_for('static', filename='uploads/' + post.file_path.split('/')[-1]) }}" alt="Post Image" alt="Новина 1" class="news-image">
+                                {% endif %}
+                            {% endif %}
+
+                            <div class="news-content">
+                                <h4><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a></h4>
+                                    <small>By {{ post.author.username }} on {{ post.date_posted.strftime('%Y-%m-%d %H:%M') }}</small>
+                                    {% if current_user == post.author %}
+                                        <a href="{{ url_for('delete_post', post_id=post.id) }}">Delete</a>
+                                    {% endif %}
+                                 <hr>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+    </section>
+</div>
+{% endblock content %}
