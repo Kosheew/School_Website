@@ -17,7 +17,7 @@ def create_app():
 
     # Основні налаштування
     app.config['SECRET_KEY'] = 'secret-key-change-me'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../instance/database.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://flask_db_school_user:eoSAnijlxgL4VdOAk2KoKV9REBvaehjK@dpg-d49q3oe3jp1c73e6sh50-a/flask_db_school' #'sqlite:///../instance/database.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Налаштування завантаження файлів

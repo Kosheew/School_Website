@@ -837,3 +837,182 @@ body {
     color: white;
     text-decoration: none;
 }
+
+/* Стилі для десктопної таблиці */
+
+.desktop-table {
+    width: 80%;
+    max-width: 1200px; /* Максимальна ширина */
+    min-width: 300px; /* Мінімальна ширина */
+    border-collapse: collapse;
+    margin: 20px auto; /* Центрування */
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+.desktop-table th {
+    background-color: #2d5a3c;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.desktop-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e8f5e8;
+    word-wrap: break-word; /* Перенос довгих слів */
+}
+
+/* Специфічні ширини для колонок */
+.desktop-table th:nth-child(1), /* День */
+.desktop-table td:nth-child(1) {
+    width: 12%;
+}
+
+.desktop-table th:nth-child(2), /* Посада */
+.desktop-table td:nth-child(2) {
+    width: 48%; /* Більша ширина для посади */
+}
+
+.desktop-table th:nth-child(3), /* Ім'я */
+.desktop-table td:nth-child(3) {
+    width: 20%;
+}
+
+.desktop-table th:nth-child(4), /* Час */
+.desktop-table td:nth-child(4) {
+    width: 20%;
+}
+
+/* Альтернативний варіант - автоматична ширина */
+.desktop-table-auto {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    table-layout: auto; /* Автоматичне розподілення ширини */
+}
+
+.desktop-table-auto th,
+.desktop-table-auto td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e8f5e8;
+    white-space: normal; /* Дозволяє перенос тексту */
+}
+
+/* Стилі для мобільних карточок */
+.mobile-cards {
+    display: none;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.schedule-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #4caf50; /* Зелений акцент */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.schedule-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.schedule-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.schedule-day {
+    font-weight: bold;
+    color: #2d5a3c; /* Темно-зелений */
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.schedule-time {
+    background: #4caf50; /* Зелений */
+    color: white;
+    padding: 6px 15px;
+    border-radius: 25px;
+    font-size: 0.9em;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.schedule-position {
+    color: #5d7a6d; /* Сіро-зелений */
+    font-size: 1em;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.schedule-name {
+    font-weight: 600;
+    color: #2d5a3c; /* Темно-зелений */
+    font-size: 1.05em;
+}
+
+.schedule-header {
+    text-align: center;
+    color: #2d5a3c; /* Темно-зелений */
+    margin-bottom: 30px;
+    font-size: 1.6em;
+    font-weight: 700;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #4caf50; /* Зелений */
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .desktop-table {
+        display: none;
+    }
+
+    .mobile-cards {
+        display: grid;
+    }
+
+    .schedule-header {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+    }
+
+    .schedule-card {
+        padding: 15px;
+    }
+
+    .schedule-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .schedule-day {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .schedule-card {
+        padding: 12px;
+    }
+
+    .schedule-header {
+        font-size: 1.2em;
+    }
+}

@@ -4,74 +4,134 @@
 
 <div class="content-container">
     <section class="content">
-        <!-- Секція для всіх постів (з зображеннями та без файлів) -->
+         <div class="content-section">
+            <h3> Приймальні дні адміністрації на 2024-2025 н.р.</h3>
+         </div>
         <div class="content-section">
-            <h3>Останні новини та оголошення</h3>
-            <div class="news-grid">
-                {% for post in posts %}
-                    {% if not post.file_path or (post.file_path and not post.file_path.endswith('.pdf')) %}
-                    <div class="news-card">
-                        <div class="news-content">
-                            {% if post.file_path and not post.file_path.endswith('.pdf') %}
-                                <img src="{{ url_for('static', filename='uploads/' + post.file_path.split('/')[-1]) }}" alt="Post Image" class="news-image">
-                            {% endif %}
-                            <h4><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a></h4>
-                            <p>{{ post.content[:100] }}{% if post.content|length > 100 %}...{% endif %}</p>
-                            <small>Автор: {{ post.author.username }} | {{ post.date_posted.strftime('%Y-%m-%d') }}</small>
-
-                            {% if current_user == post.author %}
-                                <div class="post-actions">
-                                    <a href="{{ url_for('delete_post', post_id=post.id) }}" class="delete-btn">
-                                    <i class="fas fa-trash"></i> Видалити пост
-                                    </a>
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
+        <!-- Десктопна версія (таблиця) -->
+        <table class="desktop-table">
+            <thead>
+                <tr>
+                    <th>День</th>
+                    <th>Посада</th>
+                    <th>Ім'я</th>
+                    <th>Час</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Понеділок</td>
+                    <td>Директор</td>
+                    <td>Майя Науменко</td>
+                    <td>08:00 – 14:00</td>
+                </tr>
+                <tr>
+                    <td>Вівторок</td>
+                    <td>Заступник директора з навчально-виховної роботи</td>
+                    <td>Оксана Науменко</td>
+                    <td>14:00 – 17:00</td>
+                </tr>
+                <tr>
+                    <td>Середа</td>
+                    <td>Директор</td>
+                    <td>Майя Науменко</td>
+                    <td>12:00 – 15:00</td>
+                </tr>
+                <tr>
+                    <td>Четвер</td>
+                    <td>Заступник директора з навчально-виховної роботи</td>
+                    <td>Оксана Науменко</td>
+                    <td>12:00 – 15:00</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">П'ятниця</td>
+                    <td>Заступник директора з навчально-виховної роботи</td>
+                    <td>Ольга Карбан</td>
+                    <td>13:00 – 16:00</td>
+                </tr>
+                <tr>
+                    <td>Заступник директора з навчально-виховної роботи</td>
+                    <td>Оксана Блейчик</td>
+                    <td>14:00 – 17:00</td>
+                </tr>
+                <tr>
+                    <td>Заступник директора з навчально-виховної роботи</td>
+                    <td>Оксана Блейчик</td>
+                    <td>08:00 – 14:00</td>
+                </tr>
+            </tbody>
+        </table>
         </div>
+        <!-- Мобільна версія (карточки) -->
+        <div class="mobile-cards">
+            <!-- Понеділок -->
+            <div class="schedule-card">
+                <div class="schedule-card-header">
+                    <div class="schedule-day">Понеділок</div>
+                    <div class="schedule-time">08:00 – 14:00</div>
+                </div>
+                <div class="schedule-position">Директор</div>
+                <div class="schedule-name">Майя Науменко</div>
+            </div>
 
-        <!-- Секція тільки для PDF документів -->
-        <div class="content-section">
-            <h3>Документи</h3>
-            <div class="news-grid">
-                {% for post in posts %}
-                    {% if post.file_path and post.file_path.endswith('.pdf') %}
-                    <div class="news-card">
-                        <div class="news-content">
-                            <!-- Контейнер для PDF -->
-                            <div class="pdf-preview">
-                                <div class="pdf-icon">
-                                    📄
-                                </div>
-                                <div class="pdf-info">
-                                    <h4 class="pdf-fullname">{{ post.file_path.split('/')[-1] }}</h4>
-                                    <div class="pdf-actions">
-                                        <a href="{{ url_for('static', filename='uploads/' + post.file_path.split('/')[-1]) }}"
-                                           target="_blank" class="btn-view">
-                                            Переглянути
-                                        </a>
-                                        <a href="{{ url_for('static', filename='uploads/' + post.file_path.split('/')[-1]) }}"
-                                           download class="btn-download">
-                                            Завантажити
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <small>Автор: {{ post.author.username }} | {{ post.date_posted.strftime('%Y-%m-%d') }}</small>
-                            {% if current_user == post.author %}
-                                <div class="post-actions">
-                                    <a href="{{ url_for('delete_post', post_id=post.id) }}" class="delete-btn">
-                                    <i class="fas fa-trash"></i> Видалити пост
-                                    </a>
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endif %}
-                {% endfor %}
+            <!-- Вівторок -->
+            <div class="schedule-card">
+                <div class="schedule-card-header">
+                    <div class="schedule-day">Вівторок</div>
+                    <div class="schedule-time">14:00 – 17:00</div>
+                </div>
+                <div class="schedule-position">Заступник директора з навчально-виховної роботи</div>
+                <div class="schedule-name">Оксана Науменко</div>
+            </div>
+
+            <!-- Середа -->
+            <div class="schedule-card">
+                <div class="schedule-card-header">
+                    <div class="schedule-day">Середа</div>
+                    <div class="schedule-time">12:00 – 15:00</div>
+                </div>
+                <div class="schedule-position">Директор</div>
+                <div class="schedule-name">Майя Науменко</div>
+            </div>
+
+            <!-- Четвер -->
+            <div class="schedule-card">
+                <div class="schedule-card-header">
+                    <div class="schedule-day">Четвер</div>
+                    <div class="schedule-time">12:00 – 15:00</div>
+                </div>
+                <div class="schedule-position">Заступник директора з навчально-виховної роботи</div>
+                <div class="schedule-name">Оксана Науменко</div>
+            </div>
+
+            <!-- П'ятниця - перша картка -->
+            <div class="schedule-card">
+                <div class="schedule-card-header">
+                    <div class="schedule-day">П'ятниця</div>
+                    <div class="schedule-time">13:00 – 16:00</div>
+                </div>
+                <div class="schedule-position">Заступник директора з навчально-виховної роботи</div>
+                <div class="schedule-name">Ольга Карбан</div>
+            </div>
+
+            <!-- П'ятниця - друга картка -->
+            <div class="schedule-card">
+                <div class="schedule-card-header">
+                    <div class="schedule-day">П'ятниця</div>
+                    <div class="schedule-time">14:00 – 17:00</div>
+                </div>
+                <div class="schedule-position">Заступник директора з навчально-виховної роботи</div>
+                <div class="schedule-name">Оксана Блейчик</div>
+            </div>
+
+            <!-- П'ятниця - третя картка -->
+            <div class="schedule-card">
+                <div class="schedule-card-header">
+                    <div class="schedule-day">П'ятниця</div>
+                    <div class="schedule-time">08:00 – 14:00</div>
+                </div>
+                <div class="schedule-position">Заступник директора з навчально-виховної роботи</div>
+                <div class="schedule-name">Оксана Блейчик</div>
             </div>
         </div>
     </section>
