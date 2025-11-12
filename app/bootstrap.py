@@ -37,7 +37,7 @@ def create_app():
     routes.init_routes(app)
 
     with app.app_context():
-        db.drop_all()  # видаляє всі таблиці
+       # db.drop_all()  # видаляє всі таблиці
         db.create_all()  # створює їх заново
 
     return app
